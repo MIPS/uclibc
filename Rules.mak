@@ -640,9 +640,14 @@ else
 SSP_CFLAGS := $(SSP_DISABLE_FLAGS)
 endif
 
+ifeq ($(CROSS_COMPILE),)
+  NOSTDINC := -nostdinc
+endif
+
 # Collect all CFLAGS components
 CFLAGS := $(XWARNINGS) $(CPU_CFLAGS) $(SSP_CFLAGS) \
-	-nostdinc -I$(top_builddir)include \
+	$(NOSTDINC) \
+	-I$(top_builddir)include \
 	-I$(top_srcdir)include -include libc-symbols.h \
 	-I$(top_srcdir)libc/sysdeps/linux/$(TARGET_ARCH) \
 	-I$(top_srcdir)libc/sysdeps/linux \

@@ -26,11 +26,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
 */
 
-#unset memset
-
 #include <string.h>
+#undef memset
 
-#if _MIPS_SIM == _ABIO32 || _MIPS_SIM == _ABIP32
+#if _MIPS_SIM == _ABIO32
 #define SIZEOF_reg_t 4
 typedef unsigned long reg_t;
 #else
